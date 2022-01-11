@@ -1,0 +1,55 @@
+﻿<Window x:Class="_16_2_Task_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_16_2_Task_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+    <Window.Resources>
+        <PathGeometry x:Key="path">
+            <PathFigure StartPoint="200,550">
+                <ArcSegment Size="100,400" Point="400,550" SweepDirection="Clockwise"/>
+            </PathFigure>
+        </PathGeometry>
+        <PathGeometry x:Key="path1">
+            <PathFigure StartPoint="300,100">
+                <ArcSegment Size="100,400" Point="400,550" SweepDirection="Clockwise"/>
+            </PathFigure>
+        </PathGeometry>
+    </Window.Resources>
+    <Canvas>
+        <Path Data="{StaticResource path}" Stroke="White"/>
+        <Image Source="Data/1.png" Width="50" Height="50" Canvas.Left="150" Canvas.Top="500">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingPath
+                                Storyboard.TargetProperty="(Canvas.Top)"
+                                Duration="0:0:3"
+                                AccelerationRatio="0.7"
+                                SpeedRatio="2"
+                                RepeatBehavior="Forever"
+                                PathGeometry="{StaticResource path}"
+                                Source="Y"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingPath
+                                Storyboard.TargetProperty="(Canvas.Left)"
+                                Duration="0:0:3"
+                                AccelerationRatio="0.7"
+                                SpeedRatio="2"
+                                RepeatBehavior="Forever"
+                                PathGeometry="{StaticResource path}"
+                                Source="X"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+    </Canvas>
+</Window>
